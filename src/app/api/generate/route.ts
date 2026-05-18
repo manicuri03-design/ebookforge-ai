@@ -98,47 +98,47 @@ Você DEVE retornar a resposta estritamente no seguinte formato JSON:
     // 2. PREMIUM RESILIENT DATABASE (7 Complete Chapters for ALL 7 Categories!)
     const fallbackEbooks: Record<string, MockEbook> = {
       cristao: {
-        title: title || "Prosperidade com Deus",
-        subtitle: "Como gerenciar suas finanças e atrair abundância eterna segundo os princípios das Escrituras Sagradas",
-        introduction: `## Introdução: O Chamado para a Mordomia Cristã\n\nA verdadeira prosperidade não se mede pelo acúmulo egoísta de riquezas, mas pela fidelidade na administração dos recursos que nos foram confiados pelo Criador. Quando alinhamos nossa vida financeira com a sabedoria das Escrituras, experimentamos não apenas estabilidade material, mas uma paz profunda e duradoura.\n\nEste livro foi desenhado para guiar você em uma jornada prática de transformação financeira, abordando temas fundamentais como a mordomia, o perigo das dívidas, o poder da honra e o planejamento sábio. Prepare-se para ver suas finanças sob a ótica da fé.`,
-        conclusion: `## Conclusão: Vivendo a Plenitude da Mordomia\n\nAdministrar recursos à luz da Bíblia é uma decisão diária de confiança e obediência. Ao colocar Deus no centro das suas decisões financeiras, você quebra as amarras do consumismo e se posiciona como um canal de bênçãos na terra. Lembre-se: a fidelidade no pouco precede o governo sobre o muito.`,
-        cta: `### 🎯 Próximo Passo: Mentoria Fé & Finanças\n\nPronto para aprofundar sua jornada de prosperidade bíblica? Participe da nossa mentoria exclusiva de mentores e acelere sua liberdade financeira. [Clique aqui para garantir sua vaga na Mentoria Especializada].`,
+        title: title || "Relacionamento e Intimidade com Deus",
+        subtitle: `Como buscar a presença do Pai, cultivar uma fé inabalável e prosperar sob o propósito eterno de ${topic}`,
+        introduction: `## Introdução: O Chamado para uma Vida com Propósito\n\nA busca por um relacionamento profundo e verdadeiro com Deus é a jornada mais importante e transformadora que o ser humano pode trilhar. Em um mundo cheio de distrações, ansiedades e pressões cotidianas, reservar um tempo para buscar a face do Criador é a chave para encontrar paz, sabedoria e direção para todas as áreas da vida.\n\nEste livro foi escrito especialmente para guiar você no fortalecimento da sua fé sobre **${topic}**, ajudando-o a construir alicerces espirituais indestrutíveis e a viver de acordo com a soberana vontade de Deus. Prepare-se para vivenciar uma transformação extraordinária de intimidade e poder espiritual.`,
+        conclusion: `## Conclusão: Caminhando em Aliança Perpétua\n\nCultivar a intimidade com o Pai é uma decisão diária de amor, obediência e perseverança. Ao colocar o Reino de Deus em primeiro lugar, você alinha o seu destino com as promessas eternas e se torna um testemunho vivo do amor de Cristo na terra. Mantenha os seus olhos focados no Autor e Consumador da nossa fé e caminhe com ousadia no propósito de **${topic}**.`,
+        cta: `### 🎯 Próximo Passo: Comunidade de Crescimento Espiritual\n\nPronto para acelerar o seu amadurecimento na fé e conectar-se com milhares de irmãos que buscam o mesmo propósito? Participe da nossa mentoria exclusiva. [Clique aqui para garantir sua vaga na Mentoria Especializada].`,
         chapters: [
           {
-            title: "Capítulo 1: Mordomia Cristã e Propriedade",
-            content: `### O Conceito de Mordomia\n\nNas Escrituras, aprendemos que Deus é o criador e proprietário absoluto de tudo o que existe (Salmo 24:1). Nós fomos designados como mordomos – administradores encarregados de cuidar e multiplicar esses recursos. \n\n*   **O Proprietário**: Deus detém a posse de tudo.\n*   **O Administrador**: Nós cuidamos dos bens temporários.\n\nQuando compreendemos que o dinheiro em nossas mãos não nos pertence, mas é uma confiança divina, mudamos nossa relação com o consumo e passamos a gastar com propósito, sabedoria e generosidade.`
+            title: "Capítulo 1: A Busca Pela Intimidade e Relacionamento com Deus",
+            content: `### O Primeiro Amor e a Intimidade Diária\n\nJesus nos ensina que o maior mandamento é amar a Deus sobre todas as coisas (Mateus 22:37). Buscar a intimidade com o Pai não é cumprir uma lista de tarefas religiosas, mas cultivar um relacionamento de amizade profunda, sinceridade e amor diário.\n\n*   **O Lugar Secreto**: Ter um momento diário a sós com o Pai.\n*   **A Entrega Sincera**: Conversar com Deus abertamente, expondo dores e alegrias.\n\nQuando priorizamos a presença de Deus acima de qualquer projeto humano, o nosso coração é preenchido com a paz que excede todo o entendimento.`
           },
           {
-            title: "Capítulo 2: Vencendo a Servidão das Dívidas",
-            content: `### O Perigo das Dívidas\n\nA Bíblia nos alerta severamente sobre os perigos do endividamento: "o que toma emprestado é servo do que empresta" (Provérbios 22:7). As dívidas limitam nossa liberdade espiritual, geram estresse familiar e nos impedem de apoiar causas nobres.\n\n**Passos para a Libertação Financeira:**\n1.  **Mapeamento Rígido**: Liste todas as pendências e taxas de juros.\n2.  **Corte de Excessos**: Reduza despesas supérfluas imediatamente.\n3.  **Método Bola de Neve**: Foque em quitar a menor dívida primeiro enquanto mantém o pagamento mínimo das outras.`
+            title: "Capítulo 2: Mordomia Cristã: Administrando a Vida com Propósito",
+            content: `### Mordomos do Tempo, Talentos e Recursos\n\nTudo o que somos e temos pertence ao Senhor (Salmo 24:1). Fomos chamados para ser mordomos sábios, administrando nosso tempo, talentos físicos e finanças materiais para a expansão do Reino de Deus.\n\n**Como Praticar a Mordomia Sábia:**\n1.  **Priorizar o Tempo**: Dedicar as primeiras horas do dia a Deus.\n2.  **Multiplicar Talentos**: Usar suas aptidões para servir e abençoar a comunidade.\n3.  **Fidelidade Financeira**: Administrar recursos materiais com generosidade e sabedoria.`
           },
           {
-            title: "Capítulo 3: O Poder da Generosidade e Honra",
-            content: `### Plantar para Colher\n\nA generosidade é o antídoto contra a ganância. O ato de entregar o dízimo e ofertas não é uma obrigação financeira, mas um ato de honra e adoração: "Honra ao Senhor com os teus bens..." (Provérbios 3:9).\n\nAo darmos com alegria, abrimos as janelas dos céus para colheitas abundantes. O verdadeiro próspero acumula tesouros no céu enquanto serve e investe no bem-estar de sua família e comunidade.`
+            title: "Capítulo 3: Vencendo as Preocupações e a Servidão do Mundo",
+            content: `### Firmados nas Promessas Contra a Ansiedade\n\nO próprio Cristo nos alertou sobre os perigos das preocupações deste mundo (Mateus 6:25). A ansiedade tenta roubar nossa fé, fazendo-nos duvidar da bondade e do cuidado protetor do Pai.\n\nEntregue suas aflições aos pés da cruz através de orações repletas de gratidão. Lembre-se de que se Deus cuida dos lírios do campo e dos pássaros do céu, Ele cuidará com muito mais amor de cada detalhe da sua vida.`
           },
           {
-            title: "Capítulo 4: Sabedoria e Planejamento no Poupar",
-            content: `### O Hábito de Poupar\n\n"Tesouro desejável e azeite há na casa do sábio, mas o homem insensato os devora" (Provérbios 21:20). A reserva de emergência e a poupança estratégica não demonstram falta de fé, mas sim sabedoria preventiva.\n\nCriar um fundo de segurança protege sua família em momentos de crise sem que você precise recorrer a empréstimos abusivos. Defina uma meta realista, separe uma porcentagem mensal assim que receber e viva um estilo de vida abaixo dos seus ganhos reais.`
+            title: "Capítulo 4: O Poder da Oração Eficaz e do Jejum",
+            content: `### Chaves de Autoridade Espiritual\n\nA oração de um justo é poderosa e eficaz (Tiago 5:16). A oração e o jejum não mudam a vontade de Deus, mas alinham a nossa própria mente e espírito com a perfeita e soberana vontade divina.\n\n*   **Oração Persistente**: Orar sem cessar, mantendo comunhão perpétua.\n*   **O Jejum**: Consagrar o corpo para focar na sensibilidade espiritual.\n\nUtilize essas ferramentas espirituais de forma disciplinada para romper barreiras mentais e experimentar milagres reais de transformação.`
           },
           {
-            title: "Capítulo 5: O Perigo da Cobiça e do Consumismo",
-            content: `### O Contentamento Bíblico\n\nO apóstolo Paulo nos ensina o segredo do contentamento: saber viver tanto na escassez quanto na abundância (Filipenses 4:12). O consumismo desenfreado é alimentado pelo desejo insaciável de validação social e status passageiro.\n\n*   **O Alerta**: A cobiça corrói a paz espiritual.\n*   **A Prática**: Faça a si mesmo a pergunta "Eu realmente preciso disso ou é apenas um desejo passageiro?" antes de cada compra significativa. Compre com propósito.`
+            title: "Capítulo 5: O Trabalho e a Busca Pela Excelência Profissional",
+            content: `### Fazendo Tudo Para a Glória de Deus\n\nO trabalho não é um fardo pesado, mas sim um chamado de honra para servir com excelência: "Tudo o que fizerdes, fazei-o de bom coração, como ao Senhor..." (Colossenses 3:23). Ser excelente no seu trabalho é uma das formas mais bonitas de testemunho.\n\nEvite a mediocridade, busque o aprimoramento contínuo das suas habilidades profissionais, seja extremamente honesto em todas as transações e veja o favor de Deus prosperar seus caminhos.`
           },
           {
-            title: "Capítulo 6: Trabalho como Adoração e Excelência",
-            content: `### Fazer Tudo Para a Glória de Deus\n\nO trabalho não é uma maldição, mas uma dádiva e um chamado para a excelência: "Tudo o que fizerdes, fazei-o de bom coração, como ao Senhor..." (Colossenses 3:23). Ser um profissional excelente é o melhor testemunho cristão no mercado de trabalho.\n\nAprenda a focar na entrega de valor real, evite a preguiça, desenvolva novas habilidades e seja íntegro em todos os seus negócios. A recompensa e a promoção divina vêm através do trabalho feito com máxima dedicação e ética.`
+            title: "Capítulo 6: O Poder da Generosidade, Amor e Honra",
+            content: `### Plantar com Amor Para Colher em Abundância\n\nA generosidade é a marca registrada de um coração genuinamente transformado pela graça. Honrar a Deus com as nossas primícias e abençoar o próximo com generosidade nos livra do apego material.\n\n*   **O Coração Alegre**: Dar sempre com alegria e espontaneidade.\n*   **O Fruto**: Quem semeia com generosidade colherá abundantemente em bênçãos espirituais, emocionais e materiais na terra.`
           },
           {
-            title: "Capítulo 7: Construindo um Legado de Bênçãos",
-            content: `### A Herança do Justo\n\n"O homem de bem deixa uma herança aos filhos de seus filhos" (Provérbios 13:22). Um legado cristão vai muito além de bens materiais: engloba princípios éticos, fé inabalável, educação financeira de qualidade e memórias afetivas ricas.\n\nPlaneje o futuro da sua família com responsabilidade. Invista na educação dos seus filhos, transmita ensinamentos sobre mordomia desde a infância e garanta que suas decisões de hoje pavimentem um caminho próspero e cheio de paz para as próximas gerações.`
+            title: "Capítulo 7: Construindo um Legado de Fé Para as Próximas Gerações",
+            content: `### A Herança Espiritual do Justo\n\n"O homem de bem deixa uma herança aos filhos de seus filhos" (Provérbios 13:22). O maior legado que você pode construir e transmitir não é composto de dinheiro ou propriedades, mas sim de princípios de fé, ética e fidelidade a Deus.\n\nInstrua seus filhos nos caminhos do Senhor desde os primeiros anos de vida, lidere pelo exemplo diário dentro de casa e certifique-se de que a sua caminhada com Deus hoje pavimente uma estrada segura de vitória para a sua descendência.`
           }
         ]
       },
       devocional: {
         title: title || "Altar Diário",
         subtitle: "Momentos de comunhão profunda, reflexão espiritual e fortalecimento da fé diária",
-        introduction: `## Introdução: Criando o Hábito do Altar Diário\n\nEm um mundo acelerado e barulhento, encontrar um refúgio diário de silêncio e meditação na Palavra é essencial para a saúde da nossa alma. O devocional diário não é uma tarefa religiosa, mas um momento de relacionamento íntimo com o Criador, onde somos alimentados, guiados e revigorados para enfrentar os desafios cotidianos.\n\nFoque em dedicar os primeiros minutos do seu dia a este altar de fé.`,
-        conclusion: `## Conclusão: Caminhando Sob a Luz da Presença\n\nQue este devocional tenha sido uma semente de fé no seu coração. A vida com Deus é construída passo a passo, dia após dia. Mantenha seu altar aceso, sua mente focada nas promessas divinas e seus pés alinhados com o propósito de Deus.`,
+        introduction: `## Introdução: Criando o Hábito do Altar Diário\n\nEm um mundo acelerado e barulhento, encontrar um refúgio diário de silêncio e meditação na Palavra é essencial para a saúde da nossa alma. O devocional diário não é uma tarefa religiosa, mas um momento de relacionamento íntimo com o Criador, onde somos alimentados, guiados e revigorados para enfrentar os desafios cotidianos com foco em **${topic}**.\n\nFoque em dedicar os primeiros minutos do seu dia a este altar de fé.`,
+        conclusion: `## Conclusão: Caminhando Sob a Luz da Presença\n\nQue este devocional tenha sido uma semente de fé no seu coração. A vida com Deus é construída passo a passo, dia após dia. Mantenha seu altar aceso, sua mente focada nas promessas divinas e seus pés alinhados com o propósito de Deus sobre **${topic}**.`,
         cta: `### ✨ Participe da Nossa Comunidade de Oração\n\nJunte-se a milhares de irmãos em nossa jornada de devocionais ao vivo todas as manhãs. [Clique aqui para se inscrever gratuitamente].`,
         chapters: [
           {
@@ -173,14 +173,14 @@ Você DEVE retornar a resposta estritamente no seguinte formato JSON:
       },
       ansiedade: {
         title: title || "Paz sob Controle",
-        subtitle: "Um guia científico e prático para vencer a ansiedade, gerenciar o estresse e reconquistar o equilíbrio mental",
-        introduction: `## Introdução: Compreendendo a Mente Ansiosa\n\nA ansiedade não é um sinal de fraqueza, mas um mecanismo de alerta biológico que saiu do controle. Em nossa sociedade acelerada, aprender a acalmar o sistema nervoso e reestruturar pensamentos disfuncionais é um ato de autocuidado e sobrevivência.\n\nEste ebook traz ferramentas baseadas em evidências para ajudar você a domar o estresse, reconectar-se com o presente e retomar o leme da sua própria vida.`,
+        subtitle: `Um guia científico e prático para vencer a ansiedade, gerenciar o estresse de ${topic} e reconquistar o equilíbrio mental`,
+        introduction: `## Introdução: Compreendendo a Mente Ansiosa\n\nA ansiedade não é um sinal de fraqueza, mas um mecanismo de alerta biológico que saiu do controle. Em nossa sociedade acelerada, aprender a acalmar o sistema nervoso e reestruturar pensamentos disfuncionais sobre **${topic}** é um ato de autocuidado e sobrevivência.\n\nEste ebook traz ferramentas baseadas em evidências para ajudar você a domar o estresse, reconectar-se com o presente e retomar o leme da sua própria vida.`,
         conclusion: `## Conclusão: A Paz é uma Construção Diária\n\nSuperar a ansiedade não significa nunca mais sentir medo ou estresse, mas aprender a não se deixar dominar por eles. Seja paciente com o seu processo. Cada respiração consciente e cada pensamento reestruturado são passos sólidos em direção à sua liberdade emocional.`,
         cta: `### 🌿 Acompanhamento Profissional Especializado\n\nDeseja realizar sessões práticas de controle emocional com terapeutas credenciados? Conheça nosso programa MindBalance. [Inscreva-se na nossa Lista de Espera].`,
         chapters: [
           {
             title: "Capítulo 1: O Ciclo Fisiológico da Ansiedade",
-            content: `### O Mecanismo de Luta ou Fuga\n\nQuando nos sentimos ameaçados (seja por um prazo no trabalho ou uma preocupação financeira), o cérebro altera a amígdala, liberando cortisol e adrenalina. Isso acelera os batimentos, tensiona os músculos e altera a respiração.\n\n*   **A Ameaça Percebida**: Nem sempre é real ou imediata.\n*   **A Reação do Corpo**: Sintomas físicos incômodos.\n\nAprender a identificar que esses sintomas são apenas uma reação física inofensiva é o primeiro passo para desarmar a crise de ansiedade antes que ela cresça.`
+            content: `### O Mecanismo de Luta ou Fuga\n\nQuando nos sentimos ameaçados (seja por um prazo no trabalho ou uma preocupação financeira), o cérebro ativa a amígdala, liberando cortisol e adrenalina. Isso acelera os batimentos, tensiona os músculos e altera a respiração.\n\n*   **A Ameaça Percebida**: Nem sempre é real ou imediata.\n*   **A Reação do Corpo**: Sintomas físicos incômodos.\n\nAprender a identificar que esses sintomas são apenas uma reação física inofensiva é o primeiro passo para desarmar a crise de ansiedade antes que ela cresça.`
           },
           {
             title: "Capítulo 2: Técnicas de Respiração e Ancoragem",
@@ -210,14 +210,14 @@ Você DEVE retornar a resposta estritamente no seguinte formato JSON:
       },
       "renda extra": {
         title: title || "Liberdade Financeira Digital",
-        subtitle: "Como criar fontes de renda alternativas e lucrativas na internet trabalhando de forma flexível nas horas vagas",
-        introduction: `## Introdução: A Importância da Multiplicidade de Receitas\n\nDepender de uma única fonte de renda é um risco elevado no cenário econômico atual. A internet democratizou as oportunidades, permitindo que qualquer pessoa com acesso à rede e vontade de aprender possa monetizar seu conhecimento, seu tempo livre ou suas habilidades técnicas.\n\nEste guia prático revela caminhos testados e estratégicos para você iniciar seu negócio digital paralelo sem precisar largar seu emprego atual.`,
+        subtitle: `Como criar fontes de renda alternativas, lucrativas e focadas em ${topic} trabalhando nas horas vagas`,
+        introduction: `## Introdução: A Importância da Multiplicidade de Receitas\n\nDepender de uma única fonte de renda é um risco elevado no cenário econômico atual. A internet democratizou as oportunidades, permitindo que qualquer pessoa com acesso à rede e vontade de aprender possa monetizar seu conhecimento sobre **${topic}**, seu tempo livre ou suas habilidades técnicas.\n\nEste guia prático revela caminhos testados e estratégicos para você iniciar seu negócio digital paralelo sem precisar largar seu emprego atual.`,
         conclusion: `## Conclusão: Do Paralelo ao Negócio Principal\n\nMuitas das grandes empresas e agências digitais de hoje começaram como simples projetos de renda extra no tempo livre. O segredo está na consistência e na reinvestimento dos primeiros lucros. Comece pequeno, teste rápido, valide com clientes reais e escale sua receita com sabedoria.`,
         cta: `### 🚀 Treinamento Completo: Acelerador Digital\n\nQuer acesso a mais de 50 modelos prontos de serviços de alta demanda e scripts de vendas testados? Participe do nosso treinamento completo. [Clique aqui para iniciar agora].`,
         chapters: [
           {
             title: "Capítulo 1: O Mercado de Micro-Serviços Freelance",
-            content: `### Encontrando Suas Habilidades Monetizáveis\n\nVocê não precisa ser um programador sênior para faturar online. O mercado corporativo demanda diariamente micro-serviços que exigem apenas dedicação e ferramentas simples:\n\n*   **Design de Social Media**: Criação de posts usando ferramentas intuitivas como o Canva.\n*   **Redação e Copywriting**: Escrita de posts de blog, e-mails e páginas de vendas.\n*   **Edição de Vídeos Curtos**: Edição de Reels e TikToks utilizando apps modernos como o CapCut.\n\nPlataformas como Workana, 99Freelas e Fiverr são excelentes pontos de partida para captar seus primeiros clientes.`
+            content: `### Encontrando Suas Habilidades Monetizáveis\n\nVocê não precisa ser um programador sênior para faturar online. O mercado corporativo oferece diariamente micro-serviços que exigem apenas dedicação e ferramentas simples:\n\n*   **Design de Social Media**: Criação de posts usando ferramentas intuitivas como o Canva.\n*   **Redação e Copywriting**: Escrita de posts de blog, e-mails e páginas de vendas.\n*   **Edição de Vídeos Curtos**: Edição de Reels e TikToks utilizando apps modernos como o CapCut.\n\nPlataformas como Workana, 99Freelas e Fiverr são excelentes pontos de partida para captar seus primeiros clientes.`
           },
           {
             title: "Capítulo 2: Criação e Venda de Infoprodutos Rápidos",
@@ -247,8 +247,8 @@ Você DEVE retornar a resposta estritamente no seguinte formato JSON:
       },
       "marketing digital": {
         title: title || "Máquina de Vendas Online",
-        subtitle: "Como estruturar campanhas de tráfego, criar ofertas irresistíveis e faturar no mercado digital",
-        introduction: `## Introdução: O Novo Cenário do Marketing Digital\n\nNo ecossistema altamente competitivo de hoje, compreender profundamente os fundamentos do Marketing Digital é o divisor de águas entre o sucesso extraordinário e a estagnação corporativa. Este ebook foi estruturado para fornecer as ferramentas analíticas e estratégicas mais modernas para impulsionar seus resultados comerciais.\n\nPrepare-se para dominar copywriting, tráfego pago e funis de vendas de alta performance.`,
+        subtitle: `Como estruturar campanhas de tráfego, criar ofertas irresistíveis e faturar muito com ${topic}`,
+        introduction: `## Introdução: O Novo Cenário do Marketing Digital\n\nNo ecossistema altamente competitivo de hoje, compreender profundamente os fundamentos do Marketing Digital aplicado a **${topic}** é o divisor de águas entre o sucesso extraordinário e a estagnação corporativa. Este ebook foi estruturado para fornecer as ferramentas analíticas e estratégicas mais modernas para impulsionar seus resultados comerciais.\n\nPrepare-se para dominar copywriting, tráfego pago e funis de vendas de alta performance.`,
         conclusion: `## Conclusão: O Caminho da Implementação\n\nNenhuma teoria supera a prática consistente. Ao aplicar as metodologias detalhadas neste material, você estará passos à frente dos seus concorrentes no ambiente online. A excelência de vendas é alcançada através de pequenas e disciplinadas melhorias cotidianas.`,
         cta: `### 📢 Alavanque seus Resultados em Marketing Digital\n\nDeseja contar com suporte estratégico personalizado dos maiores especialistas do mercado? Descubra o nosso grupo de Mastermind Premium. [Inscreva-se na Seleção Oficial].`,
         chapters: [
@@ -274,7 +274,7 @@ Você DEVE retornar a resposta estritamente no seguinte formato JSON:
           },
           {
             title: "Capítulo 6: E-mail Marketing e Automação",
-            content: `### A Lista é seu Maior Active\n\nEnquanto redes sociais estão sob o controle de algoritmos de terceiros, sua lista de emails é um ativo de propriedade exclusiva do seu negócio.\n\nConfigure sequências de boas-vindas automatizadas, envie newsletters semanais com conteúdos inéditos e faça campanhas pontuais de vendas rápidas. Mantenha um relacionamento próximo para reter clientes a longo prazo.`
+            content: `### A Lista é seu Maior Ativo\n\nEnquanto redes sociais estão sob o controle de algoritmos de terceiros, sua lista de emails é um ativo de propriedade exclusiva do seu negócio.\n\nConfigure sequências de boas-vindas automatizadas, envie newsletters semanais com conteúdos inéditos e faça campanhas pontuais de vendas rápidas. Mantenha um relacionamento próximo para reter clientes a longo prazo.`
           },
           {
             title: "Capítulo 7: Análise de Métricas e Escala",
@@ -284,8 +284,8 @@ Você DEVE retornar a resposta estritamente no seguinte formato JSON:
       },
       motivacional: {
         title: title || "Mentalidade Inabalável",
-        subtitle: "Como reprogramar seus hábitos, vencer a procrastinação e viver em alta performance diária",
-        introduction: `## Introdução: O Despertar da Alta Performance\n\nA verdadeira motivação não é um entusiasmo passageiro gerado por discursos emocionantes, mas sim um estado mental sólido construído através de hábitos diários inteligentes e disciplina de ferro.\n\nEste ebook fornecerá as ferramentas teóricas e científicas mais modernas para você assumir o controle total das suas ações, domar seus pensamentos limitantes e focar no que realmente trará conquistas exponenciais.`,
+        subtitle: `Como reprogramar seus hábitos, vencer a procrastinação e alcançar alta performance focada em ${topic}`,
+        introduction: `## Introdução: O Despertar da Alta Performance\n\nA verdadeira motivação não é um entusiasmo passageiro gerado por discursos emocionantes, mas sim um estado mental sólido construído através de hábitos diários inteligentes e disciplina de ferro focados em **${topic}**.\n\nEste ebook fornecerá as ferramentas teóricas e científicas mais modernas para você assumir o controle total das suas ações, domar seus pensamentos limitantes e focar no que realmente trará conquistas exponenciais.`,
         conclusion: `## Conclusão: A Disciplina Supera o Talento\n\nA motivação coloca você em movimento, mas é a disciplina que mantém você progredindo quando o entusiasmo inicial desaparece. Comemore cada pequena vitória diária, mantenha a consistência em momentos difíceis e viva focado no seu propósito maior.`,
         cta: `### 🔥 Conheça Nosso Grupo de Alta Performance\n\nQuer mentorias exclusivas semanais focadas em atingir metas audaciosas e conexões de valor com profissionais de sucesso? Participe do nosso Club VIP. [Inscreva-se aqui].`,
         chapters: [
@@ -307,7 +307,7 @@ Você DEVE retornar a resposta estritamente no seguinte formato JSON:
           },
           {
             title: "Capítulo 5: Resiliência Emocional Diante dos Obstáculos",
-            content: `### O Poder do Antifrágil\n\nEnquanto o resiliente resiste ao impacto da tempestade sem quebrar, o indivíduo antifrágil vai além: ele utiliza a dificuldade como adubo para crescer ainda mais forte.\n\nEnxergue os problemas corporativos, as crises e os erros do dia a dia como valiosas fontes de dados práticos para aprimorar suas estratégias. Não se pergunte \"Por que isso está acontecendo comigo?\", mas sim \"O que posso aprender com isso?\"`
+            content: `### O Poder do Antifrágil\n\nEnquanto o resiliente resiste ao impacto da tempestade sem quebrar, o indivíduo antifrágil vai além: ele utiliza a dificuldade como adubo para crescer ainda mais forte.\n\nEnxergue os problemas corporativos, as crises e os erros do dia a dia como valiosas fontes de dados práticos para aprimorar suas estratégias. Não se pergunte "Por que isso está acontecendo comigo?", mas sim "O que posso aprender com isso?"`
           },
           {
             title: "Capítulo 6: O Poder da Visualização e Auto-Afirmação",
@@ -321,8 +321,8 @@ Você DEVE retornar a resposta estritamente no seguinte formato JSON:
       },
       emagrecimento: {
         title: title || "Corpo em Sintonia",
-        subtitle: "Um plano de emagrecimento consciente, nutrição funcional e hábitos saudáveis para toda a vida",
-        introduction: `## Introdução: A Psicologia do Emagrecimento Saudável\n\nEmagrecer não deve ser um processo de tortura, dietas restritivas absurdas ou privação de felicidade social. O verdadeiro emagrecimento definitivo começa com a mudança da nossa relação psicológica com a comida e com a construção de hábitos duradouros.\n\nEste guia traz orientações baseadas em fisiologia e comportamento alimentar para você conquistar a sua melhor forma física com saúde e energia.`,
+        subtitle: `Um plano de emagrecimento consciente, nutrição funcional e rotinas de saúde focadas em ${topic}`,
+        introduction: `## Introdução: A Psicologia do Emagrecimento Saudável\n\nEmagrecer não deve ser um processo de tortura, dietas restritivas absurdas ou privação de felicidade social. O verdadeiro emagrecimento definitivo começa com a mudança da nossa relação de estilo com a comida e com a construção de hábitos duradouros voltados a **${topic}**.\n\nEste guia traz orientações baseadas em fisiologia e comportamento alimentar para você conquistar a sua melhor forma física com saúde e energia.`,
         conclusion: `## Conclusão: A Consistência Conquista o Peso Ideal\n\nA balança é apenas um indicador numérico passageiro, o que realmente importa é a sua disposição física, saúde e a sensação de bem-estar com a sua autoimagem. Mantenha os novos hábitos ativos, perdoe-se em dias de excesso e celebre a sua saúde.`,
         cta: `### 🥗 Conheça Nosso Desafio Fit de 21 Dias\n\nQuer acesso a um cardápio funcional completo elaborado por nutricionistas renomados e treinos diários em vídeo? Participe do nosso desafio. [Saiba mais clicando aqui].`,
         chapters: [
@@ -358,8 +358,16 @@ Você DEVE retornar a resposta estritamente no seguinte formato JSON:
       }
     };
 
-    // Fallback selection algorithm: Match requested category, or use default template
-    const formattedCategory = category.toLowerCase().trim();
+    // Robust category normalization algorithm to completely bypass accent mismatches (e.g. "cristão" -> "cristao")
+    const normalizeCategory = (cat: string) => {
+      return cat
+        .toLowerCase()
+        .trim()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, ""); // completely strips tildes, accents and cedillas
+    };
+
+    const formattedCategory = normalizeCategory(category);
     let selectedMock = fallbackEbooks[formattedCategory];
 
     if (!selectedMock) {

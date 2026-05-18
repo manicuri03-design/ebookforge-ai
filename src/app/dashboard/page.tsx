@@ -100,15 +100,8 @@ export default function Dashboard() {
   // Modal creation states
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [wizardStep, setWizardStep] = useState<1 | 2>(1);
-  const [newEbook, setNewEbook] = useState({
-    title: "",
-    topic: "",
-    category: "cristão",
-    chapters: 3,
-    visualStyle: "Moderno",
-    tone: "Persuasivo",
-    coverStyle: "from-purple-600 to-indigo-700"
-  });
+  const [userPrompt, setUserPrompt] = useState("");
+  const [nicheProfile, setNicheProfile] = useState<{ nicho: string; tom: string; coverGradient: string; visualStyle: string } | null>(null);
 
   // AI Generation Simulation & Loading State
   const [genProgress, setGenProgress] = useState(0);
@@ -187,61 +180,55 @@ export default function Dashboard() {
       setIsUpgradeModalOpen(true);
       return;
     }
-    setNewEbook({
-      title: "",
-      topic: "",
-      category: "cristão",
-      chapters: 3,
-      visualStyle: "Moderno",
-      tone: "Persuasivo",
-      coverStyle: getRandomGradient()
-    });
+    setUserPrompt("");
+    setNicheProfile(null);
     setWizardStep(1);
     setErrorText("");
     setGenProgress(0);
     setIsCreateModalOpen(true);
   };
 
+
   const handleStartGeneration = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newEbook.title || !newEbook.topic) {
-      alert("Por favor, preencha o Título e o Tema do Ebook.");
+    if (!userPrompt.trim()) {
+      alert("Descreva o tema do seu ebook.");
       return;
     }
 
     setWizardStep(2);
     setGenProgress(5);
-    setGenStatusText("Conectando ao núcleo de IA...");
+    setGenStatusText("Detectando nicho e analisando seu tema...");
     setErrorText("");
 
-    // Start progress bar animation
+    const progressSteps = [
+      "🔍 Detectando nicho e audiência-alvo...",
+      "🧠 Selecionando tom de voz ideal automaticamente...",
+      "📋 Estruturando sumário com 7 capítulos...",
+      "✍️ Redigindo introdução persuasiva...",
+      "📖 Desenvolvendo capítulos com conteúdo aprofundado...",
+      "🎯 Criando conclusão e CTA de alta conversão...",
+      "🎨 Gerando capa premium automaticamente...",
+      "✅ Finalizando e salvando seu ebook...",
+    ];
+    let stepIndex = 0;
+
     const progressInterval = setInterval(() => {
       setGenProgress((prev) => {
-        if (prev >= 92) {
-          clearInterval(progressInterval);
-          return 92;
+        if (prev >= 92) { clearInterval(progressInterval); return 92; }
+        if (stepIndex < progressSteps.length) {
+          setGenStatusText(progressSteps[stepIndex]);
+          stepIndex++;
         }
-        
-        // Dynamic status updates based on progress
-        if (prev < 25) {
-          setGenStatusText("Analisando nicho de mercado e extraindo dores...");
-        } else if (prev < 50) {
-          setGenStatusText("Estruturando sumário e capítulos de alta conversão...");
-        } else if (prev < 75) {
-          setGenStatusText("Redigindo introdução abrangente com GPT-4o-mini...");
-        } else {
-          setGenStatusText("Aplicando design e formatando conteúdo em Markdown...");
-        }
-
-        return prev + Math.floor(Math.random() * 8) + 2;
+        return prev + Math.floor(Math.random() * 7) + 3;
       });
-    }, 400);
+    }, 600);
 
     try {
-      const response = await fetch("/api/generate", {
+      const response = await fetch("/api/auto-generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newEbook)
+        body: JSON.stringify({ userPrompt })
       });
 
       clearInterval(progressInterval);
@@ -253,42 +240,42 @@ export default function Dashboard() {
 
       const data = await response.json();
       const generated = data.ebook;
+      const profile = data.nicheProfile;
+      setNicheProfile(profile);
 
-      // Compile Markdown Structure
       let markdownContent = `# ${generated.title}\n\n*${generated.subtitle}*\n\n---\n\n## Introdução\n\n${generated.introduction}\n\n---\n\n## Sumário\n\n`;
       generated.chapters.forEach((ch: { title: string; content: string }, idx: number) => {
         markdownContent += `${idx + 1}. ${ch.title}\n`;
       });
       markdownContent += `\n---\n\n`;
-
       generated.chapters.forEach((ch: { title: string; content: string }) => {
         markdownContent += `## ${ch.title}\n\n${ch.content}\n\n---\n\n`;
       });
-
       markdownContent += `## Conclusão\n\n${generated.conclusion}\n\n---\n\n${generated.cta}`;
 
-      // Create new Ebook item
       const newEbookItem: Ebook = {
         id: Math.random().toString(),
         title: generated.title,
-        topic: newEbook.topic,
-        category: newEbook.category,
-        tone: newEbook.tone,
+        topic: userPrompt,
+        category: profile?.nicho || "Geral",
+        tone: profile?.tom || "Persuasivo",
         date: new Date().toLocaleDateString("pt-BR"),
         status: "Pronto",
-        pages: Math.floor(newEbook.chapters * 6) + 4,
-        coverGradient: newEbook.coverStyle,
-        visualStyle: newEbook.visualStyle,
+        pages: 7 * 6 + 4,
+        coverGradient: profile?.coverGradient || "from-purple-600 to-indigo-700",
+        visualStyle: profile?.visualStyle || "Premium Moderno",
         content: markdownContent
       };
 
       setGenProgress(100);
-      setGenStatusText("Pronto! Salvando e inicializando editor...");
+      setGenStatusText("✅ Pronto! Abrindo seu ebook premium...");
 
       setTimeout(() => {
         updateEbooksState((prev) => [newEbookItem, ...prev]);
         setIsCreateModalOpen(false);
         setWizardStep(1);
+        setUserPrompt("");
+        setNicheProfile(null);
         setEditingEbook(newEbookItem);
         setEditorText(newEbookItem.content);
         setViewMode("editor");
@@ -303,6 +290,7 @@ export default function Dashboard() {
       setGenProgress(0);
     }
   };
+
 
   // IA Assistant content action trigger
   const handleTriggerAiAssistant = async () => {
@@ -379,16 +367,8 @@ export default function Dashboard() {
     document.body.removeChild(element);
   };
 
-  const getRandomGradient = () => {
-    const gradients = [
-      "from-purple-600 to-indigo-700",
-      "from-blue-600 to-cyan-600",
-      "from-emerald-500 to-teal-600",
-      "from-rose-500 to-pink-600",
-      "from-amber-500 to-orange-600"
-    ];
-    return gradients[Math.floor(Math.random() * gradients.length)];
-  };
+
+
 
   // Full Screen Protection Loading State
   if (loading || !user) {
@@ -1027,153 +1007,91 @@ export default function Dashboard() {
       {/* AI WIZARD CREATION MODAL */}
       {isCreateModalOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 z-50 animate-fade-in">
-          <div className="w-full max-w-xl bg-[#121827] border border-white/10 rounded-2xl shadow-2xl overflow-hidden max-h-full flex flex-col">
+          <div className="w-full max-w-lg bg-[#121827] border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
             
-            {/* Step 1: Ebook Selection wizard */}
+            {/* Step 1: Single Prompt */}
             {wizardStep === 1 && (
-              <form onSubmit={handleStartGeneration} className="p-6 sm:p-8 space-y-5 overflow-y-auto max-h-[85vh]">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-bold flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 bg-primary rounded-full animate-ping"></span>
-                    Novo Ebook Assistido por IA
-                  </h3>
-                  <button type="button" onClick={() => setIsCreateModalOpen(false)} className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+              <form onSubmit={handleStartGeneration} className="p-6 sm:p-8 space-y-6">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-2 h-2 bg-primary rounded-full animate-ping" />
+                      <span className="text-xs font-bold text-primary uppercase tracking-widest">IA Automática</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white">Criar Ebook com IA</h3>
+                    <p className="text-sm text-gray-400 mt-1">A IA detecta o nicho, tom, título e escreve tudo sozinha.</p>
+                  </div>
+                  <button type="button" onClick={() => setIsCreateModalOpen(false)} className="text-gray-400 hover:text-white transition-colors cursor-pointer mt-1">
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                   </button>
                 </div>
 
-                <div className="space-y-4 text-left">
-                  {errorText && (
-                    <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-xs p-3 rounded-lg flex items-center gap-2">
-                      <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                      <span>{errorText}</span>
-                    </div>
-                  )}
-
-                  <div>
-                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Título do Ebook</label>
-                    <input 
-                      type="text" 
-                      value={newEbook.title}
-                      onChange={(e) => setNewEbook({ ...newEbook, title: e.target.value })}
-                      className="w-full bg-[#050810] border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors text-white" 
-                      placeholder="Ex: Como Sair das Dívidas e Prosperar" 
-                      required
-                    />
+                {errorText && (
+                  <div className="bg-red-500/10 border border-red-500/40 text-red-400 text-xs p-3 rounded-xl flex items-center gap-2">
+                    <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01" /></svg>
+                    <span>{errorText}</span>
                   </div>
+                )}
 
-                  <div>
-                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Tema / Nicho da Obra</label>
-                    <input 
-                      type="text" 
-                      value={newEbook.topic}
-                      onChange={(e) => setNewEbook({ ...newEbook, topic: e.target.value })}
-                      className="w-full bg-[#050810] border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors text-white" 
-                      placeholder="Ex: Finanças sob a ótica bíblica, Marketing de Afiliados" 
-                      required
-                    />
-                  </div>
+                <div>
+                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Sobre o que será seu ebook?</label>
+                  <textarea
+                    value={userPrompt}
+                    onChange={(e) => setUserPrompt(e.target.value)}
+                    rows={3}
+                    className="w-full bg-[#050810] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-primary transition-colors resize-none placeholder-gray-600"
+                    placeholder="Ex: como sair das dívidas com fé em Deus, técnicas para emagrecer sem sofrimento, devocional cristão para jovens..."
+                    required
+                  />
+                </div>
 
-                  {/* Category grids */}
-                  <div>
-                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Categoria Temática</label>
-                    <select
-                      value={newEbook.category}
-                      onChange={(e) => setNewEbook({ ...newEbook, category: e.target.value })}
-                      className="w-full bg-[#050810] border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary text-white"
-                    >
-                      <option value="cristão">🕇 Cristão</option>
-                      <option value="devocional">📖 Devocional</option>
-                      <option value="ansiedade">🧠 Controle de Ansiedade / Saúde Mental</option>
-                      <option value="renda extra">💰 Renda Extra</option>
-                      <option value="marketing digital">🚀 Marketing Digital</option>
-                      <option value="motivacional">⚡ Motivacional / Disciplina</option>
-                      <option value="emagrecimento">🥗 Emagrecimento / Estilo de Vida</option>
-                    </select>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    {/* Chapter counts selection */}
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Número de Capítulos</label>
-                      <select 
-                        value={newEbook.chapters}
-                        onChange={(e) => setNewEbook({ ...newEbook, chapters: parseInt(e.target.value) })}
-                        className="w-full bg-[#050810] border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary text-white"
-                      >
-                        <option value="3">3 Capítulos (Rápido)</option>
-                        <option value="5">5 Capítulos (Completo)</option>
-                        <option value="7">7 Capítulos (Aprofundado)</option>
-                      </select>
-                    </div>
-
-                    {/* Style Selection */}
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Estilo Visual</label>
-                      <select
-                        value={newEbook.visualStyle}
-                        onChange={(e) => setNewEbook({ ...newEbook, visualStyle: e.target.value })}
-                        className="w-full bg-[#050810] border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary text-white"
-                      >
-                        <option value="Moderno">Moderno (SaaS)</option>
-                        <option value="Editorial">Editorial (Clássico)</option>
-                        <option value="Vibrante">Vibrante (Criativo)</option>
-                        <option value="Dark Mode">Dark Mode (Tecnológico)</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    {/* Tone of voice */}
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Tom de Voz</label>
-                      <select 
-                        value={newEbook.tone}
-                        onChange={(e) => setNewEbook({ ...newEbook, tone: e.target.value })}
-                        className="w-full bg-[#050810] border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary text-white"
-                      >
-                        <option value="Persuasivo">Persuasivo / Vendedor</option>
-                        <option value="Instrutivo">Instrutivo / Educacional</option>
-                        <option value="Motivacional">Motivacional / Forte</option>
-                        <option value="Profissional">Profissional / Técnico</option>
-                      </select>
-                    </div>
-
-                    {/* Dynamic cover styling */}
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Capa Editorial</label>
-                      <button 
+                {/* Example Chips */}
+                <div>
+                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">💡 Clique num exemplo para começar:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      "Devocional cristão para jovens",
+                      "Como ganhar dinheiro online",
+                      "Ansiedade e paz interior",
+                      "Emagrecimento sem sofrimento",
+                      "Marketing digital para iniciantes",
+                      "Alta performance e disciplina",
+                    ].map((ex) => (
+                      <button
+                        key={ex}
                         type="button"
-                        onClick={() => setNewEbook({ ...newEbook, coverStyle: getRandomGradient() })}
-                        className="w-full bg-[#050810] border border-white/10 rounded-xl px-4 py-3 text-sm flex items-center justify-between text-white hover:bg-white/5 transition-colors cursor-pointer"
+                        onClick={() => setUserPrompt(ex)}
+                        className="text-[11px] px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:bg-primary/20 hover:border-primary/40 hover:text-white transition-all cursor-pointer"
                       >
-                        <span>Variar Design</span>
-                        <div className={`w-5 h-5 rounded-md bg-gradient-to-br ${newEbook.coverStyle}`}></div>
+                        {ex}
                       </button>
-                    </div>
+                    ))}
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-white/5 flex gap-3">
-                  <button 
-                    type="button" 
-                    onClick={() => setIsCreateModalOpen(false)}
-                    className="flex-1 py-3 border border-white/10 hover:bg-white/5 rounded-xl text-sm font-semibold transition-colors cursor-pointer"
-                  >
+                {/* Auto-detect preview */}
+                <div className="bg-gradient-to-r from-primary/10 to-secondary/5 border border-primary/20 rounded-xl p-4 space-y-2">
+                  <p className="text-[10px] font-bold text-primary uppercase tracking-widest">🤖 O que a IA fará automaticamente:</p>
+                  <div className="grid grid-cols-2 gap-1.5 text-[11px] text-gray-300">
+                    {["✅ Detectar nicho e audiência", "✅ Criar título de impacto", "✅ Escolher tom de voz ideal", "✅ Escrever 7 capítulos completos", "✅ Introdução persuasiva", "✅ Conclusão + CTA de vendas"].map(item => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex gap-3 pt-2">
+                  <button type="button" onClick={() => setIsCreateModalOpen(false)} className="flex-1 py-3 border border-white/10 hover:bg-white/5 rounded-xl text-sm font-semibold transition-colors cursor-pointer text-gray-300">
                     Cancelar
                   </button>
-                  <button 
-                    type="submit"
-                    className="flex-2 py-3 bg-gradient-to-r from-primary to-secondary rounded-xl text-sm font-bold hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer text-white"
-                  >
-                    Gerar por IA
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+                  <button type="submit" className="flex-[2] py-3 bg-gradient-to-r from-primary to-secondary rounded-xl text-sm font-bold hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer text-white">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Gerar Ebook Completo com IA
                   </button>
                 </div>
               </form>
             )}
 
-            {/* Step 2: Generation Progress & AI loading animations */}
+            {/* Step 2: Generation Progress */}
             {wizardStep === 2 && (
               <div className="p-10 text-center flex flex-col items-center justify-center gap-6">
                 <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(139,92,246,0.3)] animate-pulse relative">
@@ -1181,27 +1099,31 @@ export default function Dashboard() {
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-bold mb-1">Geração de Ebook Ativa...</h3>
+                  <h3 className="text-2xl font-bold mb-1">IA Criando seu Ebook...</h3>
                   <span className="text-sm text-primary font-semibold">{genProgress}%</span>
                 </div>
 
-                {/* Progress bar container */}
                 <div className="w-full bg-[#050810] h-3 rounded-full border border-white/5 overflow-hidden max-w-sm">
-                  <div 
-                    className="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-300 ease-out"
-                    style={{ width: `${genProgress}%` }}
-                  />
+                  <div className="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-500 ease-out" style={{ width: `${genProgress}%` }} />
                 </div>
 
-                <p className="text-sm text-gray-400 mt-2 font-mono h-8">
-                  {genStatusText}
-                </p>
+                <p className="text-sm text-gray-400 font-mono min-h-[24px]">{genStatusText}</p>
+
+                {nicheProfile && (
+                  <div className="flex items-center gap-3 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-full">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4" /></svg>
+                    Nicho: {nicheProfile.nicho} · Tom: {nicheProfile.tom}
+                  </div>
+                )}
               </div>
             )}
             
           </div>
         </div>
       )}
+
+
+
             
       {editingEbook && (
         <PDFPreviewOverlay
